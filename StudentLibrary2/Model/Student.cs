@@ -2,9 +2,8 @@
 
 namespace StudentLibrary2.Model
 {
-    public class Student
+    public class Student : EFModel
     {
-        public int Id { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
         public string? Phone { get; set; }
