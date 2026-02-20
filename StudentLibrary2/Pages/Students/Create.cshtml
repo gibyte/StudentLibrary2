@@ -1,0 +1,30 @@
+﻿@page
+@model StudentLibrary2.Pages.Students.CreateModel
+@{
+}
+
+<h1>Добавить студента</h1>
+
+<form method="post">
+    <div>
+        <label>Фамилия</label><br />
+        <input asp-for="Student.LastName" />
+    </div>
+
+    <div>
+        <label>Email</label><br />
+        <input asp-for="Student.Email" />
+    </div>
+
+    <div>
+        <label>Телефон</label><br />
+        <input asp-for="Student.Phone" />
+    </div>
+
+    <div>
+        <label>Дата рождения</label><br />
+        <input asp-for="Student.BirthDate" type="date" />
+    </div>
+
+    <button type="submit">Сохранить</button>
+</form>

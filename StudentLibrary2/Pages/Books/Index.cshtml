@@ -29,6 +29,8 @@
                 <td>@book.Copies</td>
                 <td>
                     <a asp-page="Details" asp-route-id="@book.Id">Открыть</a>
+                    <a asp-page="Edit" asp-route-id="@book.Id">Изменить</a>
+                    <a asp-page="Delete" asp-route-id="@book.Id">Удалить</a>
                 </td>
             </tr>
         }

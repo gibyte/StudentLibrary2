@@ -1,0 +1,13 @@
+﻿@page "{id:int}"
+@model StudentLibrary2.Pages.Students.EditModel
+
+<form method="post">
+    <input type="hidden" asp-for="Student.Id" />
+
+    <input asp-for="Student.LastName" />
+    <input asp-for="Student.Email" />
+    <input asp-for="Student.Phone" />
+    <input asp-for="Student.BirthDate" type="date" />
+
+    <button type="submit">Сохранить</button>
+</form>

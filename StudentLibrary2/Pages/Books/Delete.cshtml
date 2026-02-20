@@ -1,0 +1,20 @@
+﻿@page "{id:int}"
+@model StudentLibrary2.Pages.Books.DeleteModel
+@{
+}
+
+<h1>Удалить книгу</h1>
+
+<h3>Вы уверены?</h3>
+
+<div>
+    <p><strong>@Model.Book.Title</strong></p>
+    <p>@Model.Book.Author</p>
+</div>
+
+<form method="post">
+    <input type="hidden" asp-for="Book.Id" />
+    <button type="submit">Удалить</button>
+</form>
+
+<a asp-page="Index">Отмена</a>

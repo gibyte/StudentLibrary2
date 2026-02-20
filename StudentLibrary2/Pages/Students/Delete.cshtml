@@ -1,0 +1,11 @@
+﻿@page "{id:int}"
+@model StudentLibrary2.Pages.Students.DeleteModel
+
+<h3>Удалить студента?</h3>
+
+<p>@Model.Student.LastName</p>
+
+<form method="post">
+    <input type="hidden" asp-for="Student.Id" />
+    <button type="submit">Удалить</button>
+</form>
