@@ -1,0 +1,17 @@
+﻿@page
+@model StudentLibrary2.Pages.Books.DetailsModel
+@{
+}
+
+<h1>Информация о книге</h1>
+
+<div>
+    <p><strong>Название:</strong> @Model.Book.Title</p>
+    <p><strong>Автор:</strong> @Model.Book.Author</p>
+    <p><strong>Год:</strong> @Model.Book.Year</p>
+    <p><strong>Количество экземпляров:</strong> @Model.Book.Copies</p>
+</div>
+
+<p>
+    <a asp-page="Index">Назад к списку</a>
+</p>

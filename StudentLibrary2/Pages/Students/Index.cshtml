@@ -1,0 +1,32 @@
+﻿@page
+@model StudentLibrary2.Pages.Students.IndexModel
+@{
+}
+
+<h1>Список студентов</h1>
+
+<table border="1" cellpadding="5">
+    <thead>
+        <tr>
+            <th>Фамилия</th>
+            <th>Email</th>
+            <th>Телефон</th>
+            <th>Дата рождения</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model.Students)
+        {
+            <tr>
+                <td>@student.LastName</td>
+                <td>@student.Email</td>
+                <td>@student.Phone</td>
+                <td>@student.BirthDate.ToShortDateString()</td>
+                <td>
+                    <a asp-page="Details" asp-route-id="@student.Id">Открыть</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
