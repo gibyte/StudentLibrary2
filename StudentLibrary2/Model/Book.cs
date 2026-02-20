@@ -3,7 +3,8 @@
     public class Book : EFModel
     {
         public string Title { get; set; }
-        public string Author { get; set; }
+        public Author Author { get; set; }
+        public int AuthorID { get; set; }
         public int Year { get; set; }
         public int Copies { get; set; }
     }
