@@ -31,6 +31,14 @@
                             <a class="nav-link text-dark" asp-page="/Students/Index">Students</a>
                         </li>
                     </ul>
+                    <ul class="navbar-nav ms-auto">
+                        @*+++ темная тема*@
+                        <li class="nav-item">
+                            <button class="btn btn-outline-secondary" onclick="toggleTheme()">🌓 Переключить тему</button>
+                        </li>
+                        @*--- темная тема*@
+
+                    </ul>
                 </div>
             </div>
         </nav>
@@ -54,3 +62,20 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+
+<script>
+    const html = document.documentElement;
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    html.setAttribute("data-bs-theme", prefersDark ? "dark" : "light");
+
+    // отслеживание изменения темы в системе
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", e => {
+        html.setAttribute("data-bs-theme", e.matches ? "dark" : "light");
+    });
+
+    function toggleTheme() {
+        const html = document.documentElement;
+        const currentTheme = html.getAttribute("data-bs-theme");
+        html.setAttribute("data-bs-theme", currentTheme === "dark" ? "light" : "dark");
+    }
+</script>
