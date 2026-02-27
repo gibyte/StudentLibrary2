@@ -20,11 +20,5 @@ public class IndexModel : PageModel
     public void OnGet()
     {
         
-        var book = new Book { Title = "Clean Code", Author = new() { Name = "Пушкин"} };
-        _context.Books.Add(book);
-        _context.SaveChanges();
-
-        var Books = _context.Books.ToList();
-
     }
 }

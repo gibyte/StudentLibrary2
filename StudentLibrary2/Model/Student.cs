@@ -4,6 +4,7 @@ namespace StudentLibrary2.Model
 {
     public class Student : EFModel
     {
+        [Required(ErrorMessage = "Необходимо заполнить имя")]
         public string LastName { get; set; }
         public string Email { get; set; }
         public string? Phone { get; set; }

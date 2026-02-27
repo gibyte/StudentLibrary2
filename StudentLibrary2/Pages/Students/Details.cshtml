@@ -1,0 +1,60 @@
+﻿@page "{id:int}"
+@model StudentLibrary2.Pages.Students.DetailsModel
+@{
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+
+        <div class="card shadow-sm mt-4">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">Информация о студенте</h5>
+            </div>
+
+            <div class="card-body">
+
+                <dl class="row mb-0">
+                    <dt class="col-sm-4">Фамилия</dt>
+                    <dd class="col-sm-8">@Model.Student.LastName</dd>
+
+                    <dt class="col-sm-4">Email</dt>
+                    <dd class="col-sm-8">@Model.Student.Email</dd>
+
+                    <dt class="col-sm-4">Телефон</dt>
+                    <dd class="col-sm-8">
+                        @(string.IsNullOrEmpty(Model.Student.Phone)
+                                                ? "—" 
+                                                        : Model.Student.Phone)
+                    </dd>
+
+                    <dt class="col-sm-4">Дата рождения</dt>
+                    <dd class="col-sm-8">
+                        @Model.Student.BirthDate.ToShortDateString()
+                    </dd>
+                </dl>
+
+            </div>
+
+            <div class="card-footer d-flex justify-content-between">
+                <a asp-page="Index" class="btn btn-outline-secondary">
+                    Назад
+                </a>
+
+                <div>
+                    <a asp-page="Edit"
+                       asp-route-id="@Model.Student.Id"
+                       class="btn btn-warning me-2">
+                        Редактировать
+                    </a>
+
+                    <a asp-page="Delete"
+                       asp-route-id="@Model.Student.Id"
+                       class="btn btn-danger">
+                        Удалить
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
