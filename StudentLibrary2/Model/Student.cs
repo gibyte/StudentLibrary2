@@ -8,6 +8,6 @@ namespace StudentLibrary2.Model
         public string Email { get; set; }
         public string? Phone { get; set; }
         public DateTime BirthDate { get; set; }
-        //email
+        public List<Book>? Books { get; set; }
     }
 }
