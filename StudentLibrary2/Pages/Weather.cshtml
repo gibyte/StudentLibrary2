@@ -1,0 +1,41 @@
+﻿@page
+@model StudentLibrary2.Pages.WeatherModel
+@{
+}
+
+<div class="container mt-5">
+    <h2>Получить текущую погоду</h2>
+
+    <form method="post">
+        <div class="mb-3">
+            <label class="form-label">Широта</label>
+            <input asp-for="Latitude" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Долгота</label>
+            <input asp-for="Longitude" class="form-control" required />
+        </div>
+
+        <button class="btn btn-primary">
+            Получить погоду
+        </button>
+    </form>
+
+    @if (Model.ErrorMessage != null)
+    {
+        <div class="alert alert-danger mt-3">
+            @Model.ErrorMessage
+        </div>
+    }
+
+    @if (Model.Weather != null)
+    {
+        <div class="card mt-4 p-3">
+            <h4>Результат:</h4>
+            <p><strong>Температура:</strong> @Model.Weather.CurrentWeather.Temperature °C</p>
+            <p><strong>Скорость ветра:</strong> @Model.Weather.CurrentWeather.WindSpeed км/ч</p>
+            <p><strong>Код погоды:</strong> @Model.Weather.CurrentWeather.WeatherCode</p>
+        </div>
+    }
+</div>
