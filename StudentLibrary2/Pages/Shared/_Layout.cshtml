@@ -1,4 +1,18 @@
-﻿<!DOCTYPE html>
+﻿@*++ авторизация*@
+
+@{
+    //var user = HttpContextAccessor.HttpContext?.User;
+    //var isAuthenticated = user?.Identity?.IsAuthenticated ?? false;
+    //var userName = user?.Identity?.Name ?? "";
+    //var isAdmin = user?.IsInRole("Admin") ?? false;
+
+    var isAuthenticated = false;
+    var userName = "234";
+
+}
+@*-- авторизация*@
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -34,6 +48,42 @@
                             <a class="nav-link text-dark" asp-page="/Students/Index">Students</a>
                         </li>
                     </ul>
+
+                        <ul class="navbar-nav ms-auto">
+                            @if (!isAuthenticated)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-page="/Account/Login">Войти</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-page="/Account/Register">Регистрация</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
+                                        👤 @userName
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                        <li>
+                                            <a class="dropdown-item" asp-page="/Account/Profile">Профиль</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" asp-page="/Account/Logout">Выход</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            }
+                            @*+++ темная тема*@
+                            <li class="nav-item">
+                                <button class="btn btn-outline-secondary" onclick="toggleTheme()">🌓 Переключить тему</button>
+                            </li>
+                            @*--- темная тема*@
+                        </ul>
+
+
+                    
                 </div>
             </div>
         </nav>

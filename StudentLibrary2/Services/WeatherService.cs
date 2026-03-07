@@ -12,7 +12,7 @@ namespace StudentLibrary2.Services
             _httpClient = httpClient;
             _httpClient.BaseAddress = new Uri("https://api.open-meteo.com/");
         }
-
+        //https://api.open-meteo.com/v1/forecast?latitude=35&longitude=35&current_weather=true
         public async Task<WeatherDto> GetWeatherAsync(double latitude, double longitude)
         {
             var response = await _httpClient.GetAsync(
