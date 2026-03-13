@@ -15,13 +15,17 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 // Регистрация Typed Client
 builder.Services.AddHttpClient<WeatherService>();
 
+// Добавляем Cookie Authentication
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
-        options.LoginPath = "/Account/Login";
-        options.AccessDeniedPath = "/Account/AccessDenied";
+        options.LoginPath = "/Account/Login"; // куда перекидывать неавторизованных
+        options.AccessDeniedPath = "/Account/AccessDenied"; // можно отдельно /AccessDenied
+        options.Cookie.Name = "StudentLibraryCookie";
+        options.ExpireTimeSpan = TimeSpan.FromHours(1); // Срок действия
     });
 
+builder.Services.AddAuthorization(); // авторизация
 
 var app = builder.Build();
 
@@ -37,8 +41,8 @@ app.UseHttpsRedirection();
 
 app.UseRouting();
 
-app.UseAuthorization();
-app.UseAuthentication();
+app.UseAuthentication();// порядок важен
+app.UseAuthorization(); // внимание эта после UseAuthentication
 
 app.MapStaticAssets();
 app.MapRazorPages()
