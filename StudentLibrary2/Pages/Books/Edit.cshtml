@@ -1,34 +1,67 @@
 ﻿@page "{id:int}"
 @model StudentLibrary2.Pages.Books.EditModel
 @{
+    ViewData["Title"] = "Редактировать книгу";
 }
 
-<h1>Редактировать книгу</h1>
+<div class="container mt-4">
 
-<form method="post">
-    <input type="hidden" asp-for="Book.Id" />
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
 
-    <div>
-        <label>Название</label><br />
-        <input asp-for="Book.Title" />
+            <div class="card shadow-sm">
+
+                <div class="card-header bg-warning text-dark">
+                    <h4 class="mb-0">Редактировать книгу</h4>
+                </div>
+
+                <div class="card-body">
+
+                    <form method="post">
+
+                        <input type="hidden" asp-for="Book.Id" />
+
+                        <div class="mb-3">
+                            <label asp-for="Book.Title" class="form-label">Название</label>
+                            <input asp-for="Book.Title" class="form-control" />
+                            <span asp-validation-for="Book.Title" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Book.Author" class="form-label">Автор</label>
+                            <input asp-for="Book.Author" class="form-control" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Book.Year" class="form-label">Год</label>
+                            <input asp-for="Book.Year" type="number" class="form-control" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Book.Copies" class="form-label">Количество</label>
+                            <input asp-for="Book.Copies" type="number" class="form-control" />
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <a asp-page="Index" class="btn btn-secondary">
+                                Назад
+                            </a>
+                            <button type="submit" class="btn btn-warning">
+                                Сохранить
+                            </button>
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
     </div>
 
-    <div>
-        <label>Автор</label><br />
-        <input asp-for="Book.Author" />
-    </div>
+</div>
 
-    <div>
-        <label>Год</label><br />
-        <input asp-for="Book.Year" type="number" />
-    </div>
-
-    <div>
-        <label>Количество</label><br />
-        <input asp-for="Book.Copies" type="number" />
-    </div>
-
-    <button type="submit">Сохранить</button>
-</form>
-
-<a asp-page="Index">Назад</a>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
