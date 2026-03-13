@@ -32,7 +32,7 @@ namespace StudentLibrary2.Pages.Account
 
             if (user != null)
             {
-                await Authenticate(Input.Email, user.Role); // ïåðåäàåì è ðîëü
+                await Authenticate(Input.Email, user.Role);
                 //await Authenticate(Input.Email); //
                 return RedirectToPage("/Index");
             }

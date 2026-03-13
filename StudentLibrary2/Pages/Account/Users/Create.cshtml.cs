@@ -1,0 +1,30 @@
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using StudentLibrary2.Data;
+using StudentLibrary2.Model.AuthApp;
+
+namespace StudentLibrary2.Pages.Account.Users
+{
+    public class CreateModel(ApplicationDbContext context) : PageModel
+    {
+        private readonly ApplicationDbContext _context = context;
+
+        [BindProperty]
+        public AuthUser User { get; set; }
+
+        public void OnGet()
+        {
+        }
+
+        public async Task<IActionResult> OnPostAsync()
+        {
+            if (!ModelState.IsValid)
+                return Page();
+
+            _context.AuthUsers.Add(User);
+            await _context.SaveChangesAsync();
+
+            return RedirectToPage("Index");
+        }
+    }
+}

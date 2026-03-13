@@ -1,14 +1,12 @@
-﻿@*++ авторизация*@
-
+﻿@using System.Security.Claims
+@*++ авторизация*@
+@inject IHttpContextAccessor HttpContextAccessor
 @{
-    //var user = HttpContextAccessor.HttpContext?.User;
-    //var isAuthenticated = user?.Identity?.IsAuthenticated ?? false;
-    //var userName = user?.Identity?.Name ?? "";
-    //var isAdmin = user?.IsInRole("Admin") ?? false;
-
-    var isAuthenticated = false;
-    var userName = "234";
-
+    var user = HttpContextAccessor.HttpContext?.User;
+    var isAuthenticated = user?.Identity?.IsAuthenticated ?? false;
+    var userName = user?.Identity?.Name ?? "";
+    var isAdmin = user?.IsInRole("Admin") ?? false;
+    var userId = user?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 }
 @*-- авторизация*@
 
@@ -47,7 +45,13 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-page="/Students/Index">Students</a>
                         </li>
-                    </ul>
+                        @if (isAdmin)
+                            {
+                        <li>
+                                <a class="nav-link text-dark" asp-page="/Account/Users/Index">Пользователи</a>
+                        </li>
+                            }
+                        </ul>
 
                         <ul class="navbar-nav ms-auto">
                             @if (!isAuthenticated)
@@ -66,9 +70,6 @@
                                         👤 @userName
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                                        <li>
-                                            <a class="dropdown-item" asp-page="/Account/Profile">Профиль</a>
-                                        </li>
                                         <li>
                                             <a class="dropdown-item" asp-page="/Account/Logout">Выход</a>
                                         </li>

@@ -33,10 +33,11 @@ namespace StudentLibrary2.Pages.Account
 
             if (user == null)
             {
-                _context.AuthUsers.Add(new AuthUser { Email = Input.Email, Password = Input.Password, Role = isFirstUser ? "Admin" : "User" });
+                user = new AuthUser { Email = Input.Email, Password = Input.Password, Role = isFirstUser ? "Admin" : "User" };
+                _context.AuthUsers.Add(user);
                 await _context.SaveChangesAsync();
 
-                await Authenticate(Input.Email);
+                await Authenticate(user.Email, user.Role);
                 return RedirectToPage("/Index");
             }
 
@@ -44,10 +45,15 @@ namespace StudentLibrary2.Pages.Account
             return Page();
         }
 
-        private async Task Authenticate(string userName)
+        private async Task Authenticate(string userName, string role)
         {
-            var claims = new List<Claim> { new Claim(ClaimsIdentity.DefaultNameClaimType, userName) };
-            var identity = new ClaimsIdentity(claims, "ApplicationCookie");
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimsIdentity.DefaultNameClaimType, userName),
+                new Claim(ClaimsIdentity.DefaultRoleClaimType, role)
+            };
+
+            var identity = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
             var principal = new ClaimsPrincipal(identity);
 
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
