@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using StudentLibrary2.Data;
+using StudentLibrary2.Hubs;
 using StudentLibrary2.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +15,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 // Регистрация Typed Client
 builder.Services.AddHttpClient<WeatherService>();
+
+//SignalR
+builder.Services.AddSignalR();
 
 // Добавляем Cookie Authentication
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -37,6 +41,8 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+
+
 app.UseHttpsRedirection();
 
 app.UseRouting();
@@ -47,5 +53,8 @@ app.UseAuthorization(); // внимание эта после UseAuthentication
 app.MapStaticAssets();
 app.MapRazorPages()
    .WithStaticAssets();
+
+//SignalR
+app.MapHub<BookHub>("/bookHub"); // хаб после UseAuthorization
 
 app.Run();

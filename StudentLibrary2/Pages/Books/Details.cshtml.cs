@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using StudentLibrary2.Data;
 using StudentLibrary2.Model;
 
@@ -14,11 +15,14 @@ namespace StudentLibrary2.Pages.Books
             _context = context;
         }
 
-        public Book Book { get; set; }
+        public Book? Book { get; set; }
 
         public IActionResult OnGet(int id)
         {
-            Book = _context.Books.FirstOrDefault(b => b.Id == id);
+            Book = _context.Books
+                        .Where(c => c.Id == id)
+                        .Include(b => b.Author)
+                        .FirstOrDefault();
 
             if (Book == null)
                 return NotFound();

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using StudentLibrary2.Data;
 using StudentLibrary2.Model;
 
@@ -18,7 +19,9 @@ namespace StudentLibrary2.Pages.Books
 
         public void OnGet()
         {
-            Books = _context.Books.ToList();
+            Books = _context.Books
+                .Include(b => b.Author)
+                .ToList();
         }
     }
 }
