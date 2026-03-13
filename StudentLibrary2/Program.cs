@@ -56,5 +56,6 @@ app.MapRazorPages()
 
 //SignalR
 app.MapHub<BookHub>("/bookHub"); // хаб после UseAuthorization
+app.MapHub<ChatHub>("/chatHub");
 
 app.Run();
