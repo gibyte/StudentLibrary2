@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using StudentLibrary2.Data;
@@ -5,6 +6,7 @@ using StudentLibrary2.Model.AuthApp;
 
 namespace StudentLibrary2.Pages.Account.Users
 {
+    [Authorize(Roles = "Admin")]
     public class CreateModel(ApplicationDbContext context) : PageModel
     {
         private readonly ApplicationDbContext _context = context;
