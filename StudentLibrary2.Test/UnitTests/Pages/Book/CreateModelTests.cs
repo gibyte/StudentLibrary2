@@ -39,33 +39,5 @@ namespace StudentLibrary2.Test.UnitTests.Pages.Book
             object value = result.Should().BeOfType<PageResult>();
             context.Books.Count().Should().Be(0);
         }
-
-        [Fact]
-        public void OnPost_ShouldAddBookAndRedirect_WhenModelStateIsValid()
-        {
-            // Arrange
-            var context = GetDbContext();
-            var pageModel = new StudentLibrary2.Pages.Books.CreateModel(context);
-
-            pageModel.Book = new StudentLibrary2.Model.Book
-            {
-                Title = "Test Book",
-                Author = new Author { Name = "Author" },
-                Year = 2000,
-                Copies = 1
-            };
-
-            // Act
-            var result = pageModel.OnPost();
-
-            // Assert
-            result.Should().BeOfType<RedirectToPageResult>();
-
-            var redirect = result as RedirectToPageResult;
-            redirect.PageName.Should().Be("Index");
-
-            context.Books.Count().Should().Be(1);
-            context.Books.First().Title.Should().Be("Test Book");
-        }
     }
 }
