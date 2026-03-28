@@ -1,17 +1,68 @@
 ﻿@page "{id:int}"
 @model StudentLibrary2.Pages.Books.DetailsModel
 @{
+    ViewData["Title"] = "Информация о книге";
 }
 
-<h1>Информация о книге</h1>
+<div class="container mt-4">
 
-<div>
-    <p><strong>Название:</strong> @Model.Book.Title</p>
-    <p><strong>Автор:</strong> @Model.Book.Author</p>
-    <p><strong>Год:</strong> @Model.Book.Year</p>
-    <p><strong>Количество экземпляров:</strong> @Model.Book.Copies</p>
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+
+            <div class="card shadow-sm">
+
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Информация о книге</h4>
+                </div>
+
+                <div class="card-body">
+
+                    <h5 class="card-title mb-3">
+                        📚 @Model.Book.Title
+                    </h5>
+
+                    <ul class="list-group list-group-flush mb-3">
+
+                        <li class="list-group-item">
+                            <strong>Автор:</strong>
+                            <span class="text-muted">@Model.Book.Author</span>
+                        </li>
+
+                        <li class="list-group-item">
+                            <strong>Год:</strong>
+                            <span class="badge bg-secondary">
+                                @Model.Book.Year
+                            </span>
+                        </li>
+
+                        <li class="list-group-item">
+                            <strong>Экземпляров:</strong>
+                            <span class="badge bg-info">
+                                @Model.Book.Copies
+                            </span>
+                        </li>
+
+                    </ul>
+
+                    <div class="d-flex justify-content-between">
+
+                        <a asp-page="Index" class="btn btn-secondary">
+                            Назад
+                        </a>
+
+                        <a asp-page="Edit"
+                           asp-route-id="@Model.Book.Id"
+                           class="btn btn-warning">
+                            Редактировать
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
 </div>
-
-<p>
-    <a asp-page="Index">Назад к списку</a>
-</p>

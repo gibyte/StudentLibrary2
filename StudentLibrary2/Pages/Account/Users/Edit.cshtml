@@ -1,0 +1,41 @@
+﻿@page "{id:int}"
+@model StudentLibrary2.Pages.Account.Users.EditModel
+@{
+}
+
+<div class="container mt-4">
+
+    <h2>Edit User</h2>
+
+    <form method="post">
+
+        <input type="hidden" asp-for="User.Id" />
+
+        <div class="mb-3">
+            <label asp-for="User.Email" class="form-label"></label>
+            <input asp-for="User.Email" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="User.Password" class="form-label"></label>
+            <input asp-for="User.Password"
+                   type="password"
+                   class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="User.Role" class="form-label"></label>
+            <input asp-for="User.Role" class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-warning">
+            Save
+        </button>
+
+        <a asp-page="Index" class="btn btn-secondary">
+            Back
+        </a>
+
+    </form>
+
+</div>

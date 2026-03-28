@@ -1,0 +1,32 @@
+﻿@page
+@model StudentLibrary2.Pages.Account.Users.DetailsModel
+@{
+}
+
+<div class="container mt-4">
+
+    <h2>User Details</h2>
+
+    <div class="card">
+
+        <div class="card-body">
+
+            <p><b>Email:</b> @Model.User.Email</p>
+            <p><b>Role:</b> @Model.User.Role</p>
+
+        </div>
+
+    </div>
+
+    <br>
+
+    <a asp-page="Edit" asp-route-id="@Model.User.Id"
+       class="btn btn-warning">
+        Edit
+    </a>
+
+    <a asp-page="Index" class="btn btn-secondary">
+        Back
+    </a>
+
+</div>
