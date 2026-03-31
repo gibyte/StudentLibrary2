@@ -24,6 +24,9 @@ namespace StudentLibrary2.Pages.Books
 
         public IActionResult OnGet(int id)
         {
+            if (id <= 0)
+                throw new ArgumentException("Id должен быть положительным");
+
             Book = _context.Books
                         .Where( c=> c.Id == id)
                         .Include(b => b.Author)

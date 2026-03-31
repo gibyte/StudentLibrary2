@@ -33,7 +33,7 @@ namespace StudentLibrary2.Pages.Account
 
             if (user == null)
             {
-                user = new AuthUser { Email = Input.Email, Password = Input.Password, Role = isFirstUser ? "Admin" : "User" };
+                user = new AuthUser { Name = Input.Email, Email = Input.Email, Password = Input.Password, Role = isFirstUser ? "Admin" : "User" };
                 _context.AuthUsers.Add(user);
                 await _context.SaveChangesAsync();
 

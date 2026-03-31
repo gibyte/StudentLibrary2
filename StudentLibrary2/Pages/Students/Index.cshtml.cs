@@ -7,7 +7,7 @@ using StudentLibrary2.Model;
 namespace StudentLibrary2.Pages.Students
 {
 
-    [Authorize]
+    //[Authorize]
     public class IndexModel : PageModel
     {
         private readonly ApplicationDbContext _context;
