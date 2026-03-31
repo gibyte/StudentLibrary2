@@ -6,7 +6,7 @@ using StudentLibrary2.Model;
 
 namespace StudentLibrary2.Pages.Students
 {
-    [Authorize]
+    //[Authorize]
     public class EditModel : PageModel
     {
         private readonly ApplicationDbContext _context;
@@ -19,18 +19,26 @@ namespace StudentLibrary2.Pages.Students
         [BindProperty]
         public Student Student { get; set; }
 
-        public IActionResult OnGet(int id)
+        async public Task<IActionResult> OnGet(int id)
         {
-            Student = _context.Students.Find(id);
+
+            if (id <= 0)
+                throw new ArgumentException("Id должен быть положительным");
+
+            Student = await _context.Students.FindAsync(id);
+
+            //id = id / 0;
 
             if (Student == null)
                 return NotFound();
 
             return Page();
+
         }
 
         public IActionResult OnPost()
         {
+
             if (!ModelState.IsValid)
                 return Page();
 
